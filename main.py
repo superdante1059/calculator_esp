@@ -46,7 +46,7 @@ def end(size, lights, device):
 def form():
     return render_template('form.html')
 
-#The form's results
+#Resultados del formulario
 @app.route('/submit', methods=['POST'])
 def submit_form():
     # Declarar variables para la recogida de datos
