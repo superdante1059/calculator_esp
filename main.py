@@ -1,21 +1,21 @@
-# Import
+# Importar
 from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
 
 def result_calculate(size, lights, device):
-    # Variables that allow for the calculation of the appliances' energy draw
+    # Variables que permiten calcular el consumo energético de los aparatos
     home_coef = 100
     light_coef = 0.04
     devices_coef = 5   
     return size * home_coef + lights * light_coef + device * devices_coef 
 
-# The first page
+# La primera página
 @app.route('/')
 def index():
     return render_template('index.html')
-# The second page
+# Segunda página
 @app.route('/<size>')
 def lights(size):
     return render_template(
@@ -23,7 +23,7 @@ def lights(size):
                             size=size
                            )
 
-# The third page
+# La tercera página
 @app.route('/<size>/<lights>')
 def electronics(size, lights):
     return render_template(
@@ -32,7 +32,7 @@ def electronics(size, lights):
                             lights = lights                           
                            )
 
-# Calculation
+# Cálculo
 @app.route('/<size>/<lights>/<device>')
 def end(size, lights, device):
     return render_template('end.html', 
@@ -41,7 +41,7 @@ def end(size, lights, device):
                                                     int(device)
                                                     )
                         )
-# The form
+# El formulario
 @app.route('/form')
 def form():
     return render_template('form.html')
@@ -49,12 +49,12 @@ def form():
 #The form's results
 @app.route('/submit', methods=['POST'])
 def submit_form():
-    # Declare variables for the data collection
+    # Declarar variables para la recogida de datos
     name = request.form['name']
 
-    # You can save your data or email it
+    # Puedes guardar tus datos o enviarlos por correo electrónico
     return render_template('form_result.html', 
-                           # Place the variables here
+                           # Coloque aquí las variables
                            name=name,
                            )
 
